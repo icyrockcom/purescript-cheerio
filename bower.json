@@ -1,0 +1,29 @@
+{
+  "name": "purescript-cheerio",
+  "description": "PureScript bindings for Cheerio",
+  "main": "index.js",
+  "authors": [
+    "icyrock.com@icyrock.com"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/icyrockcom/purescript-cheerio",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/icyrockcom/purescript-cheerio.git"
+	},
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "purescript-functions": "^3.0.0",
+    "purescript-test-unit": "^13.0.0",
+    "purescript-psci-support": "^3.0.0",
+    "purescript-console": "^3.0.0",
+    "purescript-eff": "^3.1.0",
+    "purescript-prelude": "^3.1.1"
+  }
+}

@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+    - "stable"
+sudo: false
+install:
+  - npm install -g purescript pulp psc-package
+  - npm install
+  - psc-package update
+after_success:
+  - >-
+    test $TRAVIS_TAG &&
+    echo $GITHUB_TOKEN | pulp login &&
+    echo y | pulp publish --no-push
+
