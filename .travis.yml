@@ -3,9 +3,9 @@ node_js:
     - "stable"
 sudo: false
 install:
-  - npm install -g purescript pulp psc-package
+  - npm install -g purescript pulp bower
   - npm install
-  - psc-package update
+  - bower install
 after_success:
   - >-
     test $TRAVIS_TAG &&
