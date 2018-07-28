@@ -2,13 +2,10 @@ module Test.Cheerio.Static where
 
 import Prelude hiding (eq)
 
-import Control.Monad.Eff (Eff)
-import Control.Monad.Eff.AVar (AVAR)
-import Control.Monad.Eff.Console (CONSOLE)
+import Effect (Effect)
 import Data.Maybe (Maybe(..))
 import Test.Unit (TestSuite, suite, test)
 import Test.Unit.Assert as Assert
-import Test.Unit.Console (TESTOUTPUT)
 import Test.Unit.Main (runTest)
 
 import Cheerio (attr, find, length, text)
@@ -24,10 +21,10 @@ import Cheerio.Static
 
 import Test.HtmlEx (htmlEx)
 
-main :: Eff (avar :: AVAR, console :: CONSOLE, testOutput :: TESTOUTPUT) Unit
+main :: Effect Unit
 main = runTest suites
 
-suites :: forall eff. TestSuite eff
+suites :: TestSuite
 suites = do
   suite "Loading" do
     test "load" do
