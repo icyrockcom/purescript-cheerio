@@ -9,7 +9,8 @@ import Test.Unit.Assert as Assert
 import Test.Unit.Main (runTest)
 
 import Cheerio
-  ( attr
+  ( Cheerio
+  , attr
   , children
   , eq
   , find
@@ -32,13 +33,24 @@ import Test.HtmlEx (htmlEx)
 main :: Effect Unit
 main = runTest suites
 
+emptyCheerio :: Cheerio
+emptyCheerio = loadRoot htmlEx # find ".no-such-element"
+
 suites :: TestSuite
 suites = do
   suite "Attributes" do
     test "attr" do
       Assert.equal
-        "fruits"
+        (Just "fruits")
         (loadRoot htmlEx # find "ul" # attr "id")
+
+      Assert.equal
+        Nothing
+        (loadRoot htmlEx # find "ul" # attr "no-such-attribute")
+
+      Assert.equal
+        Nothing
+        (emptyCheerio # attr "id")
 
     test "hasClass" do
       Assert.equal
@@ -53,6 +65,10 @@ suites = do
         true
         (loadRoot htmlEx # find "li" # hasClass "pear")
 
+      Assert.equal
+        false
+        (emptyCheerio # hasClass "pear")
+
   suite "Traversing" do
     test "find" do
       Assert.equal
@@ -61,7 +77,7 @@ suites = do
 
     test "parent" do
       Assert.equal
-        "fruits"
+        (Just "fruits")
         (loadRoot htmlEx # find ".pear" # parent # attr "id")
 
     test "next" do
@@ -109,10 +125,18 @@ suites = do
         (Just "Apple")
         (loadRoot htmlEx # find ".apple" # html)
 
+      Assert.equal
+        Nothing
+        (emptyCheerio # html)
+
     test "text" do
       Assert.equal
         "Apple"
         (loadRoot htmlEx # find ".apple" # text)
+
+      Assert.equal
+        ""
+        (emptyCheerio # text)
 
   suite "More" do
     test "Long chain" do

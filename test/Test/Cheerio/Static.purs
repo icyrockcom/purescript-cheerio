@@ -35,7 +35,7 @@ suites = do
   suite "Selectors" do
     test "select" do
       Assert.equal
-        "pear"
+        (Just "pear")
         (load htmlEx # select "ul .pear" # attr "class")
 
     test "selectDeep" do

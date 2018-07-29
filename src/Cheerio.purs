@@ -1,15 +1,19 @@
 module Cheerio where
 
-import Data.Function.Uncurried (Fn2, Fn3, runFn2, runFn3)
+import Data.Function.Uncurried (Fn2, Fn3, Fn4, runFn2, runFn3, runFn4)
 import Data.Maybe (Maybe(..))
 
 foreign import data Cheerio :: Type
 
 -- Attributes
-foreign import attrImpl :: Fn2 String Cheerio String
+foreign import attrImpl :: forall a.
+  Fn4 (Maybe a) (a -> Maybe a) String Cheerio (Maybe String)
 
-attr :: String -> Cheerio -> String
-attr = runFn2 attrImpl
+-- | Gets an attribute value from the first selected element, returning
+-- | Nothing when there are no selected elements, or when the first selected
+-- | element does not have the specified attribute.
+attr :: String -> Cheerio -> Maybe String
+attr = runFn4 attrImpl Nothing Just
 
 foreign import hasClassImpl :: Fn2 String Cheerio Boolean
 
@@ -39,6 +43,8 @@ eq = runFn2 eqImpl
 foreign import htmlImpl :: forall a.
   Fn3 (Maybe a) (a -> Maybe a) Cheerio (Maybe String)
 
+-- | Gets an html content string from the first selected element, returning
+-- | Nothing when there are no selected elements.
 html :: Cheerio -> Maybe String
 html = runFn3 htmlImpl Nothing Just
 
