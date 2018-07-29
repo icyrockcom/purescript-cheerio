@@ -12,7 +12,7 @@ Install [cheerio](https://www.npmjs.com/package/cheerio) dependency:
 
 Install this package:
 
-* Using [bower](https://github.com/purescript/psc-package):
+* Using [bower](https://bower.io/):
 
       $ bower install --save purescript-cheerio
 
