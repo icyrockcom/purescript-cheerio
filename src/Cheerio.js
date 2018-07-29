@@ -1,8 +1,8 @@
 const cheerio = require('cheerio')
 
 // Attributes
-exports.attrImpl = function(name, cheerioInst) {
-  return cheerioInst.attr(name);
+exports.attrImpl = function(nothing, just, name, cheerioInst) {
+  return cheerioInst.length ? just(cheerioInst.attr(name)) : nothing;
 }
 
 exports.hasClassImpl = function(className, cheerioInst) {
@@ -48,8 +48,7 @@ exports.eqImpl = function(index, cheerioInst) {
 
 // Rendering
 exports.htmlImpl = function(nothing, just, cheerioInst) {
-  const ret = cheerioInst.html()
-  return ret != null ? just(ret) : nothing
+  return cheerioInst.length ? just(cheerioInst.html()) : nothing;
 }
 
 exports.text = function(cheerioInst) {
