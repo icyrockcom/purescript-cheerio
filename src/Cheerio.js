@@ -2,7 +2,13 @@ const cheerio = require('cheerio')
 
 // Attributes
 exports.attrImpl = function(nothing, just, name, cheerioInst) {
-  return cheerioInst.length ? just(cheerioInst.attr(name)) : nothing;
+
+  if (cheerioInst.length > 0) {
+    const value = cheerioInst.attr(name);
+    return value != null ? just(value) : nothing;
+  }
+
+  return nothing;
 }
 
 exports.hasClassImpl = function(className, cheerioInst) {

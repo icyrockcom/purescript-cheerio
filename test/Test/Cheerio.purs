@@ -46,6 +46,10 @@ suites = do
 
       Assert.equal
         Nothing
+        (loadRoot htmlEx # find "ul" # attr "no-such-attribute")
+
+      Assert.equal
+        Nothing
         (emptyCheerio # attr "id")
 
     test "hasClass" do

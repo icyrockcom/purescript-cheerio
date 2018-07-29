@@ -10,7 +10,8 @@ foreign import attrImpl :: forall a.
   Fn4 (Maybe a) (a -> Maybe a) String Cheerio (Maybe String)
 
 -- | Gets an attribute value from the first selected element, returning
--- | Nothing when there are no selected elements.
+-- | Nothing when there are no selected elements, or when the first selected
+-- | element does not have the specified attribute.
 attr :: String -> Cheerio -> Maybe String
 attr = runFn4 attrImpl Nothing Just
 
