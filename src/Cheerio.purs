@@ -1,4 +1,20 @@
-module Cheerio where
+module Cheerio (
+    Cheerio,
+    attr,
+    children,
+    eq,
+    first,
+    find,
+    hasClass,
+    html,
+    last,
+    length,
+    next,
+    parent,
+    prev,
+    siblings,
+    text
+  ) where
 
 import Data.Function.Uncurried (Fn2, Fn3, Fn4, runFn2, runFn3, runFn4)
 import Data.Maybe (Maybe(..))
