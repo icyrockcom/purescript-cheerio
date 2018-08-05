@@ -24,6 +24,7 @@ import Cheerio
   , prev
   , siblings
   , text
+  , toArray
   )
 
 import Cheerio.Static (loadRoot)
@@ -137,6 +138,25 @@ suites = do
       Assert.equal
         ""
         (emptyCheerio # text)
+
+  suite "Miscellaneous" do
+    test "length" do
+      Assert.equal
+        0
+        (emptyCheerio # length)
+
+      Assert.equal
+        3
+        (loadRoot htmlEx # find "li" # length)
+
+    test "toArray" do
+      Assert.equal
+        []
+        (emptyCheerio # toArray # map (attr "class"))
+
+      Assert.equal
+        (map Just ["apple", "orange", "pear"])
+        (loadRoot htmlEx # find "li" # toArray # map (attr "class"))
 
   suite "More" do
     test "Long chain" do

@@ -13,9 +13,13 @@ module Cheerio (
     parent,
     prev,
     siblings,
-    text
+    text,
+    toArray
   ) where
 
+import Prelude
+
+import Data.Array ((..))
 import Data.Function.Uncurried (Fn2, Fn3, Fn4, runFn2, runFn3, runFn4)
 import Data.Maybe (Maybe(..))
 
@@ -67,4 +71,12 @@ html = runFn3 htmlImpl Nothing Just
 foreign import text :: Cheerio -> String
 
 -- Miscellaneous
+
+-- | Get how many elements there are in the given Cheerio
 foreign import length :: Cheerio -> Int
+
+-- | Seperate each element out into its own Cheerio
+toArray :: Cheerio -> Array Cheerio
+toArray c
+  | length c == 0 = []
+  | otherwise     = map (\i -> eq i c) (0 .. (length c - 1))
