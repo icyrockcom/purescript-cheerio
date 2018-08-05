@@ -17,7 +17,7 @@ module Cheerio (
     toArray
   ) where
 
-import Prelude
+import Prelude hiding (eq)
 
 import Data.Array ((..))
 import Data.Function.Uncurried (Fn2, Fn3, Fn4, runFn2, runFn3, runFn4)
