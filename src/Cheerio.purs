@@ -1,20 +1,20 @@
-module Cheerio (
-    Cheerio,
-    attr,
-    children,
-    eq,
-    first,
-    find,
-    hasClass,
-    html,
-    last,
-    length,
-    next,
-    parent,
-    prev,
-    siblings,
-    text,
-    toArray
+module Cheerio
+  ( Cheerio
+  , attr
+  , children
+  , eq
+  , first
+  , find
+  , hasClass
+  , html
+  , last
+  , length
+  , next
+  , parent
+  , prev
+  , siblings
+  , text
+  , toArray
   ) where
 
 import Prelude hiding (eq)

@@ -8,19 +8,25 @@ Basic bindings for [cheerio](https://cheerio.js.org/). Only includes read-only f
 
 Install [cheerio](https://www.npmjs.com/package/cheerio) dependency:
 
-    $ npm install --save cheerio
+```bash
+$ npm install --save cheerio
+```
 
-Install this package:
+Install this package using [spago](https://github.com/purescript/spago):
 
-* Using [bower](https://bower.io/):
+* Add package to your `spago.dhall`:
 
-      $ bower install --save purescript-cheerio
+```dhall
+...
+dependencies = [ ..., "cheerio" ]
+...
+```
 
-* Using [psc-package](https://github.com/purescript/psc-package):
+* Install packages by running:
 
-      $ psc-package install cheerio
-
-  You might need to set up a [custom package set](https://github.com/purescript/psc-package#add-a-package-to-the-package-set).
+```bash
+$ spago install
+```
 
 ## Example
 
@@ -28,29 +34,37 @@ From [basic example](examples/Basic.purs).
 
 Imports:
 
-    import Cheerio (Cheerio, find, length)
-    import Cheerio.Static (loadRoot)
+```purescript
+import Cheerio (Cheerio, find, length)
+import Cheerio.Static (loadRoot)
+```
 
 Example html:
 
-    htmlEx :: String
-    htmlEx = """
-      <ul id="fruits">
-        <li class="apple">Apple</li>
-        <li class="orange">Orange</li>
-        <li class="pear">Pear</li>
-      </ul>
-    """
+```purescript
+htmlEx :: String
+htmlEx = """
+  <ul id="fruits">
+    <li class="apple">Apple</li>
+    <li class="orange">Orange</li>
+    <li class="pear">Pear</li>
+  </ul>
+"""
+```
 
 Load it and get the root element:
 
-    root :: Cheerio
-    root = loadRoot htmlEx
+```purescript
+root :: Cheerio
+root = loadRoot htmlEx
+```
 
 Use the query functions:
 
-    let fruitCount = find "#fruits" root # length
-    in log $ "Number of fruits: " <> show fruitCount
+```purescript
+let fruitCount = root # find "#fruits" # find "li" # length
+in log $ "Number of fruits: " <> show fruitCount
+```
 
 For more examples, please take a look at the [unit tests](test/Test/Main.purs). They cover most of the read-only cheerio functions.
 

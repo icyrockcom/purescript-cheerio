@@ -1,13 +1,13 @@
 {
   "name": "purescript-cheerio",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "PureScript bindings for Cheerio",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "pulp test"
+    "test": "spago test"
   },
   "repository": {
     "type": "git",
@@ -20,8 +20,6 @@
   },
   "homepage": "https://github.com/icyrockcom/purescript-cheerio#readme",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.3",
-    "lodash": "^4.17.15",
-    "npm": "^6.12.1"
+    "cheerio": "^1.0.0-rc.3"
   }
 }

@@ -4,8 +4,8 @@ import Prelude
 
 import Cheerio (Cheerio, find, length)
 import Cheerio.Static (loadRoot)
-import Control.Monad.Eff (Eff)
-import Control.Monad.Eff.Console (CONSOLE, log)
+import Effect (Effect)
+import Effect.Console (log)
 
 htmlEx :: String
 htmlEx = """
@@ -19,7 +19,7 @@ htmlEx = """
 root :: Cheerio
 root = loadRoot htmlEx
 
-example :: forall eff. Eff (console :: CONSOLE | eff) Unit
-example =
-  let fruitCount = find "#fruits" root # length
+main :: Effect Unit
+main =
+  let fruitCount = root # find "#fruits" # find "li" # length
   in log $ "Number of fruits: " <> show fruitCount

@@ -1,11 +1,12 @@
-module Cheerio.Static (
-  CheerioStatic,
-  html,
-  load,
-  loadRoot,
-  select,
-  selectDeep,
-  root) where
+module Cheerio.Static
+  ( CheerioStatic
+  , html
+  , load
+  , loadRoot
+  , select
+  , selectDeep
+  , root
+  ) where
 
 import Prelude
 import Cheerio (Cheerio)
