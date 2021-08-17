@@ -1,8 +1,11 @@
-{ name = "purescript-cheerio"
+{ name = "cheerio"
+, license = "MIT"
+, repository = "https://github.com/icyrockcom/purescript-cheerio"
 , dependencies =
-  [ "console"
+  [ "arrays"
   , "effect"
   , "functions"
+  , "maybe"
   , "prelude"
   , "psci-support"
   , "test-unit"
